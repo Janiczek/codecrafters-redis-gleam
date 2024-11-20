@@ -229,14 +229,10 @@ fn encode_bulk_str(length: Int, str: String) -> BytesTree {
 
 fn encode_arr(length: Int, arr: List(RESP)) -> BytesTree {
   [
-    [
-      bytes_tree.from_string("$"),
-      bytes_tree.from_string(int.to_string(length)),
-      bytes_tree.from_string("\r\n"),
-    ],
-    list.map(arr, encode),
-    [bytes_tree.from_string("\r\n")],
+    bytes_tree.from_string("$"),
+    bytes_tree.from_string(int.to_string(length)),
+    bytes_tree.from_string("\r\n"),
+    ..list.map(arr, encode)
   ]
-  |> list.flatten()
   |> bytes_tree.concat()
 }

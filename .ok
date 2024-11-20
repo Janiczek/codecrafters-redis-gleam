@@ -1,2 +1,2 @@
 run: clr && ls src/*.gleam | entr -r gleam run --module main
-push: git push origin master && git push codecrafters master
+push: git push origin master && git push github master
